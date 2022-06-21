@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{%block conteudo%}
+<div class="row form-group">
+    <div class="col-md">
+        <h5><strong>Nome: </strong>{{contato.nome}} {{contato.sobrenome}}</h5>
+    </div>
+    <div class="col-md d-flex justify-content-end">
+        <strong>Criado em: </strong>{{contato.data_criacao|date:'d/m/Y'}}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md">
+        <strong>Telefone: </strong>{{contato.telefone}}
+    </div>
+    <div class="col-md">
+        <strong>email: </strong>{{contato.email}}
+    </div>
+    <div class="col-md d-flex justify-content-end">
+        <strong>Categoria: </strong>{{contato.categoria}}
+    </div>
+</div>
+<div class="row form-group">
+    <div class="col-md">
+        <h5><strong>Descrição: </strong>{{contato.descricao}}</h5>
+    </div>
+</div>
+{%endblock%}
