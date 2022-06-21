@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {%block conteudo%}
-    <h1 class="mt-5">Minha agenda</h1>   
+    <h1 class="mt-5">Minha agenda</h1>
+    <form class="row g-3 pb-2" action="{% url 'busca' %}" method="GET">
+      <div class="col-md">
+        <input type="text" class="form-control" name="termo" placeholder="Pesquise por (Nome Completo, Nome, Sobrenome ou Telefone)" value="{{request.GET.termo}}">
+      </div>
+    </form>
     <table class="table">
         <thead>
         <tr>
@@ -43,11 +48,11 @@
             {% for pagina in contatos.paginator.page_range%}
               {% if contatos.number == pagina %}
                 <li class="page-item active">
-                    <a class="page-link" href="?p={{pagina}}">{{pagina}}</a>
+                    <a class="page-link" href="?p={{ pagina }}&termo={{ request.GET.termo }}">{{pagina}}</a>
                 </li>
               {% else %}
                 <li class="page-item">
-                  <a class="page-link" href="?p={{pagina}}">{{pagina}}</a>
+                  <a class="page-link" href="?p={{ pagina }}&termo={{ request.GET.termo }}">{{pagina}}</a>
                 </li>
               {% endif %}
             {% endfor %}
