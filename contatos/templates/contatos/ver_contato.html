@@ -1,13 +1,18 @@
 {% extends 'base.html' %}
 
 {%block conteudo%}
-<div class="row form-group">
-    <div class="col-md">
-        <h5><strong>Nome: </strong>{{contato.nome}} {{contato.sobrenome}}</h5>
-    </div>
-    <div class="col-md d-flex justify-content-end">
+<div class="row form-group pt-2">
+    {% if contato.foto%}
+        <div class="col-md-2">
+            <img src="{{ contato.foto.url }}" height="80px" width="80px">
+        </div>
+    {%endif%}
+        <div class="col-md d-flex justify-content-start">
+            <strong>Nome: </strong>{{contato.nome}} {{contato.sobrenome}}
+        </div>
+    <!-- <div class="col-md d-flex justify-content-end">
         <strong>Criado em: </strong>{{contato.data_criacao|date:'d/m/Y'}}
-    </div>
+    </div> -->
 </div>
 <div class="row form-group">
     <div class="col-md">
