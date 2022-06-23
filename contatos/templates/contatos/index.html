@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{%block titulo%}Contatos | {%endblock%}
 {%block conteudo%}
     <h1 class="mt-5">Minha agenda</h1>
     <form class="row g-3 pb-2" action="{% url 'busca' %}" method="GET">
