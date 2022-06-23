@@ -1,9 +1,13 @@
+from email import message
 from unicodedata import name
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
+from contatos.models import Contato
+from .models import FormContato
 
 # Create your views here.
 def login(request):
@@ -81,4 +85,18 @@ def logout(request):
 
 @login_required(redirect_field_name='login')
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    formContato = FormContato()
+
+    if request.POST:
+        contato = FormContato(request.POST, request.FILES)
+
+        if not contato.is_valid():
+            messages.add_message(request, messages.ERROR, 'Preencha todos os dados')
+            formContato = FormContato(request.POST, request.FILES)
+        else:
+            contato.save()
+            messages.add_message(request, messages.SUCCESS, 'Contato salvo corretamente')
+
+    return render(request, 'accounts/dashboard.html', {
+        'formContato': formContato
+    })
